@@ -37,7 +37,7 @@ namespace Notepad
 
         public static string authPath;
 
-        const string URL = $"https://notepad.kevindang12.com";
+        const string URL = $"http://notepad.kevindang12.com";
 
         /// <summary>
         /// Initialize the Notepad Window with the user info 
@@ -110,9 +110,11 @@ namespace Notepad
 
                 Dictionary<string, string> userNotes = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseBody);
 
-                txtInput.Text = userNotes["title"];
-
-                tbPlaceholder.Visibility = Visibility.Collapsed;
+                if (userNotes["title"].Length > 0)
+                {
+                    txtInput.Text = userNotes["title"];
+                    tbPlaceholder.Visibility = Visibility.Collapsed;
+                }
 
                 textField.Text = userNotes["note"];
             }

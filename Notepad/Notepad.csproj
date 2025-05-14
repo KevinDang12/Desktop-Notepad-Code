@@ -142,6 +142,9 @@
     <Content Update="Assets\BadgeLogo.scale-400.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\Google.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\LargeTile.scale-100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
@@ -316,11 +319,6 @@
     <Content Remove="Assets\Square44x44Logo.targetsize-256.png" />
     <Content Remove="Assets\Square44x44Logo.targetsize-32.png" />
     <Content Remove="Assets\Square44x44Logo.targetsize-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Google.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Content Update="Assets\Facebook.png">

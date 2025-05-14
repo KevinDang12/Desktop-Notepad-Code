@@ -21,33 +21,6 @@
         <Grid Grid.Row="1" Background="#53516d">
 
             <Grid.Resources>
-                <Style x:Key="FacebookButtonStyle" TargetType="Button">
-                    <Setter Property="Background" Value="#3b5999"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="FontSize" Value="18"/>
-                    <Setter Property="FontFamily" Value="Segoe UI"/>
-                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                    <Setter Property="Width" Value="400"/>
-                    <Setter Property="Padding" Value="5"/>
-                    <Setter Property="Margin" Value="20 5"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border x:Name="ButtonBorder"
-                                        Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="{TemplateBinding CornerRadius}">
-                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      Margin="{TemplateBinding Padding}"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-
                 <Style x:Key="GoogleButtonStyle" TargetType="Button">
                     <Setter Property="Background" Value="White"/>
                     <Setter Property="Foreground" Value="Black"/>
@@ -125,34 +98,6 @@
                             Width="30"/>
                         <TextBlock
                             Text="Log In with Google"
-                            VerticalAlignment="Center"
-                            Margin="8 0 0 0"/>
-                    </StackPanel>
-                </Button>
-
-                <Button
-                    Style="{StaticResource FacebookButtonStyle}"
-                    x:Name="FacebookLogin"
-                    Margin="20 5"
-                    Padding="5 5"
-                    Background="#3b5999"
-                    Foreground="White"
-                    FontSize="18"
-                    FontFamily="Segoe UI"
-                    HorizontalAlignment="Stretch"
-                    HorizontalContentAlignment="Left"
-                    Width="400"
-                    Click="Facebook_Login"
-                    PointerEntered="FacebookLogin_PointerEntered"
-                    PointerExited="FacebookLogin_PointerExited">
-                    <StackPanel
-                        Orientation="Horizontal">
-                        <Image
-                            Source="{StaticResource Facebook}"
-                            Height="30"
-                            Width="30"/>
-                        <TextBlock
-                            Text="Log In with Facebook"
                             VerticalAlignment="Center"
                             Margin="8 0 0 0"/>
                     </StackPanel>
