@@ -6,7 +6,6 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Notepad.AuthService;
-using Notepad.View;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -17,6 +16,7 @@ using System.Threading;
 using System.Net.Http;
 using Windows.UI;
 using Microsoft.UI.Xaml.Media.Animation;
+using Notepad.View;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,7 +32,7 @@ namespace Notepad
         private readonly string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "client_secrets.json");
         private readonly string appId;
         private readonly string scope = "openid, public_profile";
-        private const string URL = "https://notepad.kevindang12.com";
+        private const string URL = "http://notepad.kevindang12.com";
         private UserInfo userInfo;
         private static readonly HttpClient client = new();
         private bool serverStatus = false;
@@ -66,6 +66,33 @@ namespace Notepad
             }
         }
 
+        /// <summary>
+        /// Check the status of the Backend server
+        /// </summary>
+        /// <returns>The server status</returns>
+        private async Task GetStatus()
+        {
+            try
+            {
+                string url = $"{URL}/api/status";
+
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    serverStatus = true;
+                }
+                else
+                {
+                    serverStatus = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"An error occurred: {ex.Message}");
+                serverStatus = false;
+            }
+        }
 
         /// <summary>
         /// Authenticate the Google user and get the values for the user's ID,
@@ -118,34 +145,6 @@ namespace Notepad
         }
 
         /// <summary>
-        /// Check the status of the Backend server
-        /// </summary>
-        /// <returns>The server status</returns>
-        private async Task GetStatus()
-        {
-            try
-            {
-                string url = $"{URL}/api/status";
-
-                HttpResponseMessage response = await client.GetAsync(url);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    serverStatus = true;
-                }
-                else
-                {
-                    serverStatus = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"An error occurred: {ex.Message}");
-                serverStatus = false;
-            }
-        }
-
-        /// <summary>
         /// Button Listener to login to a Google account
         /// </summary>
         /// <param name="sender"></param>
@@ -181,47 +180,6 @@ namespace Notepad
                 };
                 _ = await dialog.ShowAsync();
             }
-        }
-
-        /// <summary>
-        /// Button Listener to login to a Facebook account
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void Facebook_Login(object sender, RoutedEventArgs e)
-        {
-            await GetStatus();
-
-            if (serverStatus)
-            {
-                string appId = this.appId;
-                string requestedScopes = scope;
-
-                object[] facebookParameters = new object[] { appId, requestedScopes };
-                Frame.Navigate(typeof(FBDialogPage), facebookParameters, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
-            }
-            else
-            {
-                ContentDialog dialog = new ContentDialog
-                {
-                    Title = "Warning",
-                    Content = "Unable to sign in with Facebook. Please try again later.",
-                    CloseButtonText = "OK",
-                    XamlRoot = FacebookLogin.XamlRoot
-                };
-                _ = await dialog.ShowAsync();
-            }
-        }
-
-        private void FacebookLogin_PointerEntered(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
-        {
-            FacebookLogin.Background = new SolidColorBrush(Colors.LightBlue);
-        }
-
-        private void FacebookLogin_PointerExited(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
-        {
-            Color facebookBlue = Color.FromArgb(255, 59, 89, 153);
-            FacebookLogin.Background = new SolidColorBrush(facebookBlue);
         }
 
         private void GoogleLogin_PointerEntered(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)

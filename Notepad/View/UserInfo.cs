@@ -15,15 +15,4 @@ namespace Notepad.View
         public string FirstName { get; set; }
         public string LastName { get; set; }
     }
-
-    /// <summary>
-    /// The Facebook User Info after using
-    /// Facebook authentication
-    /// </summary>
-    public class FacebookUserInfo
-    {
-        public string Id { get; set; }
-        public string First_Name { get; set; }
-        public string Last_Name { get; set; }
-    }
 }
