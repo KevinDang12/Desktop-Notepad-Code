@@ -16,21 +16,18 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="LoginTitleBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#53516d"/>
+        <Grid x:Name="LoginTitleBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#53516e"/>
 
-        <Grid Grid.Row="1" Background="#53516d">
+        <Grid Grid.Row="1" Background="#53516e">
 
             <Grid.Resources>
                 <Style x:Key="GoogleButtonStyle" TargetType="Button">
-                    <Setter Property="Background" Value="White"/>
-                    <Setter Property="Foreground" Value="Black"/>
                     <Setter Property="FontSize" Value="18"/>
                     <Setter Property="FontFamily" Value="Segoe UI"/>
                     <Setter Property="HorizontalAlignment" Value="Stretch"/>
                     <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                    <Setter Property="Width" Value="400"/>
-                    <Setter Property="Padding" Value="5"/>
-                    <Setter Property="Margin" Value="20 5"/>
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="Margin" Value="20 10"/>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
@@ -40,8 +37,8 @@
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         CornerRadius="{TemplateBinding CornerRadius}">
                                     <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      Margin="{TemplateBinding Padding}"/>
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Margin="{TemplateBinding Padding}"/>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
